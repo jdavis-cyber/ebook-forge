@@ -2,7 +2,7 @@
 
 ## Executive Summary
 
-eBook Forge is a zero-dependency, single-file document authoring environment designed specifically for **Program Analysts**, **Governance Leads**, and **SOP Authors** who operate in IT-restricted environments. It transforms chaotic input from various sources (Word, PDF, raw text) into standardized, professional-grade Standard Operating Procedures (SOPs), policy documents, and compliance artifacts.
+eBook Forge is a zero-dependency, single-file document authoring environment designed specifically for **Program Analysts**, **Governance Leads**, and **SOP Authors** who operate in IT-restricted environments. It transforms chaotic input from various sources (Word, raw text) into standardized, professional-grade Standard Operating Procedures (SOPs), policy documents, and compliance artifacts.
 
 ## The Problem
 
@@ -25,7 +25,6 @@ Program Analysts often face a "Tooling Gap" in enterprise environments:
   * **Pagination**: Live, dynamic page break indicators show exactly where physical printing will cut content, eliminating "widows and orphans" in printed SOPs.
 * **Universal Ingestion**:
   * **Word (.docx)**: Import legacy SOPs while stripping out messy, inconsistent styling.
-  * **PDF**: Extract raw text from locked PDFs to repurpose content.
 * **Governance-Ready Output**: Exports directly to clean, paginated PDF/Print readiness without watermarks or proprietary formats.
 * **AI-Assisted Remediation** (Optional): Integrated Gemini API hook to "repair" broken text, garbled OCR, or malformed tables from legacy imports.
 
@@ -43,7 +42,7 @@ Simply double-click `index.html`. The specific version of the tool is "frozen" i
 
 ### 2. Import & Organize
 
-* **Import**: Drag and drop existing `.docx` or `.pdf` files directly onto the canvas.
+* **Import**: Drag and drop existing `.docx` files directly onto the canvas.
 * **Structure**: Use the sidebar to treat each file as a "Chapter" or "Section". Drag and drop to reorder sections of your document.
 
 ### 3. Refine

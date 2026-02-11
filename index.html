@@ -19,7 +19,6 @@
 
     <!-- Utilities -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.4.2/mammoth.browser.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
 
     <style>
@@ -610,8 +609,6 @@
     <div id="root"></div>
 
     <script type="text/babel">
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
-
         const { useState, useEffect, useRef, useCallback } = React;
 
         // --- LIVE PAGE BREAK CALCULATION ---
@@ -1020,17 +1017,6 @@
                             const result = await mammoth.convertToHtml({ arrayBuffer });
                             if (result.messages.length > 0) newWarnings.push(`Word Warning (${file.name}): ${result.messages.map(m => m.message).join(', ')}`);
                             content = processContent(result.value);
-                        } else if (file.name.endsWith('.pdf')) {
-                            const arrayBuffer = await file.arrayBuffer();
-                            const pdf = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
-                            let fullText = "";
-                            for (let i = 1; i <= pdf.numPages; i++) {
-                                const page = await pdf.getPage(i);
-                                const textContent = await page.getTextContent();
-                                fullText += `<p>${textContent.items.map(item => item.str).join(' ')}</p>`;
-                            }
-                            content = fullText;
-                            newWarnings.push(`PDF Notice (${file.name}): Tables in PDFs are flattened. Use 'Repair' to fix.`);
                         }
                         if (content) {
                             const wordCount = countWords(content);
@@ -1226,8 +1212,8 @@
                                 >
                                     <FileUp className="mx-auto mb-3" style={{ color: '#C0C0C0' }} />
                                     <span className="text-xs block font-medium" style={{ color: '#C0C0C0' }}>Initialize Data Stream</span>
-                                    <span className="text-[10px] block mt-1" style={{ color: '#888888' }}>(Drag .docx or .pdf)</span>
-                                    <input id="fileInput" type="file" multiple className="hidden" accept=".docx,.pdf" onChange={(e) => handleFileUpload(e.target.files)} />
+                                    <span className="text-[10px] block mt-1" style={{ color: '#888888' }}>(Drag .docx)</span>
+                                    <input id="fileInput" type="file" multiple className="hidden" accept=".docx" onChange={(e) => handleFileUpload(e.target.files)} />
                                 </div>
 
 
